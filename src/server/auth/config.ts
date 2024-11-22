@@ -2,6 +2,7 @@ import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import { compare } from "bcrypt";
 import { type User, type DefaultSession, type NextAuthConfig } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
+import { type DefaultJWT } from "next-auth/jwt";
 
 import { db } from "~/server/db";
 import {
@@ -27,6 +28,13 @@ declare module "next-auth" {
   }
 
   interface User {
+    role: "USER" | "ADMIN";
+  }
+}
+
+declare module "next-auth/jwt" {
+  interface JWT extends DefaultJWT {
+    id: string;
     role: "USER" | "ADMIN";
   }
 }
@@ -104,15 +112,15 @@ export const authConfig = {
   callbacks: {
     jwt: ({ token, user }) => {
       if (user) token.role = user.role;
-      if (user) token.id = user.id;
+      if (user) token.id = user.id!;
       return token;
     },
-    session: ({ session, user }) => ({
+    session: ({ session, token }) => ({
       ...session,
       user: {
         ...session.user,
-        id: user.id,
-        role: user.role,
+        id: token.id,
+        role: token.role,
       },
     }),
   },
