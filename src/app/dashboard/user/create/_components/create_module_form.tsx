@@ -31,7 +31,7 @@ const CreateModuleForm = () => {
   const router = useRouter();
   const { toast } = useToast();
 
-  const generateModule = api.userRoute.generate.generate.useMutation({
+  const generateModule = api.userRoute.generate.generateModule.useMutation({
     onSuccess(data) {
       if (data) {
         router.push(`/dashboard/module/${data}`);
@@ -62,7 +62,7 @@ const CreateModuleForm = () => {
   });
 
   function onSubmit(values: z.infer<typeof CreateModuleSchema>) {
-    generateModule.mutate(values)
+    generateModule.mutate(values);
   }
 
   return (
@@ -188,7 +188,14 @@ const CreateModuleForm = () => {
                   <FormLabel>Jumlah pertemuan</FormLabel>
                   <FormControl>
                     <div className="flex items-center space-x-4">
-                      <Input type="number" placeholder="cth. 4" {...field} />
+                      <Input
+                        type="number"
+                        placeholder="cth. 4"
+                        {...field}
+                        onChange={(event) =>
+                          field.onChange(parseInt(event.target.value, 10))
+                        }
+                      />
                       <div>Kali</div>
                     </div>
                   </FormControl>
@@ -208,7 +215,14 @@ const CreateModuleForm = () => {
                   <FormLabel>Jumlah Jam Pelajaran</FormLabel>
                   <FormControl>
                     <div className="flex items-center space-x-4">
-                      <Input type="number" placeholder="cth 3" {...field} />
+                      <Input
+                        type="number"
+                        placeholder="cth 3"
+                        {...field}
+                        onChange={(event) =>
+                          field.onChange(parseInt(event.target.value, 10))
+                        }
+                      />
                       <div>Jam</div>
                     </div>
                   </FormControl>
@@ -227,7 +241,14 @@ const CreateModuleForm = () => {
                   <FormLabel>Lama Jam Pelajaran</FormLabel>
                   <FormControl>
                     <div className="flex items-center space-x-4">
-                      <Input type="number" placeholder="cth. 45" {...field} />
+                      <Input
+                        type="number"
+                        placeholder="cth. 45"
+                        {...field}
+                        onChange={(event) =>
+                          field.onChange(parseInt(event.target.value, 10))
+                        }
+                      />
                       <div>Menit</div>
                     </div>
                   </FormControl>

@@ -8,7 +8,7 @@ import { TRPCError } from "@trpc/server";
 import { generated } from "~/server/db/schema";
 
 export const generateRouter = createTRPCRouter({
-  generate: protectedProcedure
+  generateModule: protectedProcedure
     .input(CreateModuleSchema)
     .mutation(async ({ input, ctx }) => {
       const inputPrompt = GeneratePrompt(input);
@@ -93,7 +93,7 @@ export const generateRouter = createTRPCRouter({
       } catch (error) {
         throw new TRPCError({
           code: "INTERNAL_SERVER_ERROR",
-          message: "Server error, Moduk tidal dapat ditampilkan.",
+          message: "Server error, Modul tidal dapat ditampilkan.",
           cause: error,
         });
       }

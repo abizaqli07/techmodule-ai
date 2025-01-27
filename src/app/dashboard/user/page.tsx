@@ -1,8 +1,10 @@
+"use client"
 
-const UserDashboardPage = async () => {
+
+const UserDashboardPage = () => {
 
   return (
-    <div className=" flex w-full items-center justify-center">
+    <div className="flex w-full items-center justify-center">
       <div className="text-3xl font-semibold">User Dashboard</div>
     </div>
   );

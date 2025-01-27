@@ -1,11 +1,11 @@
 import "~/styles/globals.css";
 
-import { Poppins } from "next/font/google";
 import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
+import { Poppins } from "next/font/google";
 
+import { Toaster } from "~/components/ui/toaster";
 import { TRPCReactProvider } from "~/trpc/react";
-import { ToastProvider } from "~/components/ui/toast";
 
 export const metadata: Metadata = {
   title: "Create T3 App",
@@ -28,7 +28,7 @@ export default function RootLayout({
       <TRPCReactProvider>
         <body className={`font-sans ${poppins.variable}`}>
           {children}
-          <ToastProvider />
+          <Toaster />
         </body>
       </TRPCReactProvider>
     </html>
