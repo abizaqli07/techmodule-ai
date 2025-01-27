@@ -1,11 +1,13 @@
 import { compile } from "@fileforge/react-print";
 import { Document } from "./_components/document";
 import GeneratedPage from "./_components/generated_page";
+import { api } from "~/trpc/server";
 
-const content = "#Hello markdown";
-
-const GeneratedContent = async () => {
-  const html = await compile(<Document markdownContent={content} />);
+const GeneratedContent = async ({ params }: { params: { id: string } }) => {
+  const markdownContent = await api.userRoute.generate.getOne({
+    id: params.id,
+  });
+  const html = await compile(<Document content={markdownContent} />);
 
   return (
     <div>

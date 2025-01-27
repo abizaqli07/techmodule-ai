@@ -22,6 +22,7 @@ export const createTable = pgTableCreator((name) => `tmai_${name}`);
 // =========== Enums ========== //
 export const userRole = pgEnum("userRole", ["USER", "ADMIN"]);
 
+// ======== Users Data ======= //
 export const users = createTable("user", {
   id: varchar("id", { length: 255 })
     .notNull()
@@ -40,6 +41,7 @@ export const users = createTable("user", {
 
 export const usersRelations = relations(users, ({ many }) => ({
   accounts: many(accounts),
+  generates: many(generated),
 }));
 
 export const accounts = createTable(
@@ -68,7 +70,7 @@ export const accounts = createTable(
       columns: [account.provider, account.providerAccountId],
     }),
     userIdIdx: index("account_user_id_idx").on(account.userId),
-  })
+  }),
 );
 
 export const accountsRelations = relations(accounts, ({ one }) => ({
@@ -91,7 +93,7 @@ export const sessions = createTable(
   },
   (session) => ({
     userIdIdx: index("session_user_id_idx").on(session.userId),
-  })
+  }),
 );
 
 export const sessionsRelations = relations(sessions, ({ one }) => ({
@@ -110,5 +112,36 @@ export const verificationTokens = createTable(
   },
   (vt) => ({
     compoundKey: primaryKey({ columns: [vt.identifier, vt.token] }),
-  })
+  }),
 );
+
+// ========= AI Data =========//
+export const generated = createTable("generated", {
+  id: varchar("id", { length: 255 })
+    .notNull()
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  userId: varchar("userId")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  title: varchar("title", { length: 255 }).notNull(),
+  class: varchar("class", { length: 255 }).notNull(),
+  subject: varchar("subject", { length: 255 }).notNull(),
+  message1: text("message1").notNull(),
+  message2: text("message2").notNull(),
+  message3: text("message3").notNull(),
+  message4: text("message4").notNull(),
+  createdAt: timestamp("created_at")
+    .default(sql`CURRENT_TIMESTAMP`)
+    .notNull(),
+  updatedAt: timestamp("updatedAt")
+    .default(sql`CURRENT_TIMESTAMP`)
+    .notNull(),
+});
+
+export const purchaseRelations = relations(generated, ({ one }) => ({
+  user: one(users, {
+    fields: [generated.userId],
+    references: [users.id],
+  }),
+}));

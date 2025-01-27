@@ -19,13 +19,17 @@ export const CreateModuleSchema = z.object({
   class: z.string().min(1, {
     message: "Kelas harus diisi"
   }),
-  lesson_meet: z.string().min(1, {
+  lesson_meet: z.number().min(1, {
     message: "Jumlah pertemuan harus diisi"
   }),
-  lesson_time: z.string().min(1, {
+  lesson_time: z.number().min(1, {
     message: "Jumlah jam bembelajaran harus diisi"
   }),
-  lesson_hour: z.string().min(1, {
+  lesson_hour: z.number().min(1, {
     message: "Lama jam pembelajaran harus diisi"
   }),
+})
+
+export const GetOneModuleSchema = z.object({
+  id: z.string()
 })

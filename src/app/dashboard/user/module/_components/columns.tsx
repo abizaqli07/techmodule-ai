@@ -15,64 +15,64 @@ import {
 // You can use a Zod schema here if you want.
 export type Module = {
   id: string;
-  name: string;
-  phase: "A" | "B" | "C" | "D" | "F" | "G";
-  status: "pending" | "processing" | "success" | "failed";
-  created_at: string;
+  title: string;
+  class: string;
+  subject: string;
+  createdAt: Date;
 };
 
 export const columns: ColumnDef<Module>[] = [
   {
-    accessorKey: "name",
+    accessorKey: "title",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Module Name
+          Nama Modul
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
     },
   },
   {
-    accessorKey: "phase",
+    accessorKey: "subject",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Phase
+          Materi
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
     },
   },
   {
-    accessorKey: "status",
+    accessorKey: "class",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Status
+          Kelas
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
     },
   },
   {
-    accessorKey: "created_at",
+    accessorKey: "createdAt",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Created At
+          Dibuat
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
@@ -93,7 +93,10 @@ export const columns: ColumnDef<Module>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuItem>
-              <Link href={`/progress/${id}`} className="flex space-x-1 items-center">
+              <Link
+                href={`/dashboard/user/module/${id}`}
+                className="flex items-center space-x-1"
+              >
                 <Pencil className="mr-2 h-4 w-4" />
                 Action
               </Link>

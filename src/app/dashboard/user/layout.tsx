@@ -29,7 +29,7 @@ const UserDashboardLayout = async ({ children }: { children: ReactNode }) => {
         <div className="relative flex flex-[2] md:hidden mb-12">
           <MobileSidebar />
         </div>
-        <div className="flex-[5]">{children}</div>
+        <div className="flex-[5] overflow-hidden">{children}</div>
       </main>
     </div>
   );

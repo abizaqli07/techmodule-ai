@@ -23,8 +23,29 @@ import {
 import { CreateModuleSchema } from "~/server/validator/module";
 
 import { Input } from "~/components/ui/input";
+import { api } from "~/trpc/react";
+import { useRouter } from "next/navigation";
+import { useToast } from "~/hooks/use-toast";
 
 const CreateModuleForm = () => {
+  const router = useRouter();
+  const { toast } = useToast();
+
+  const generateModule = api.userRoute.generate.generate.useMutation({
+    onSuccess(data) {
+      if (data) {
+        router.push(`/dashboard/module/${data}`);
+      }
+    },
+    onError(error) {
+      toast({
+        title: error.data?.code,
+        description: error.message,
+        variant: "destructive",
+      });
+    },
+  });
+
   const form = useForm<z.infer<typeof CreateModuleSchema>>({
     resolver: zodResolver(CreateModuleSchema),
     defaultValues: {
@@ -34,14 +55,14 @@ const CreateModuleForm = () => {
       learning_model: "",
       class: "",
       year: "",
-      lesson_meet: "",
-      lesson_time: "",
-      lesson_hour: "",
+      lesson_meet: 0,
+      lesson_time: 0,
+      lesson_hour: 0,
     },
   });
 
   function onSubmit(values: z.infer<typeof CreateModuleSchema>) {
-    console.log(values);
+    generateModule.mutate(values)
   }
 
   return (
