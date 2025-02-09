@@ -4,6 +4,7 @@ import { Button } from "~/components/ui/button";
 import { useRef } from "react";
 import generatePDF, { Resolution, Margin, type Options } from "react-to-pdf";
 import { Separator } from "~/components/ui/separator";
+import { ScrollArea } from "~/components/ui/scroll-area";
 
 const options: Options = {
   filename: "techmodule.pdf",
@@ -13,7 +14,7 @@ const options: Options = {
       top: Margin.SMALL,
       left: Margin.MEDIUM,
       bottom: Margin.SMALL,
-      right: Margin.SMALL
+      right: Margin.SMALL,
     },
     format: "A4",
     orientation: "p",
@@ -54,8 +55,8 @@ const GeneratedPage = ({ compiled }: GeneratedPageProps) => {
       <Separator />
 
       {/* Generated PDF */}
-      <div className="overflow-x-scroll">
-        <div className="p-4 border-[2px] rounded-md w-fit mx-auto">
+      <ScrollArea className="h-full">
+        <div className="mx-auto w-fit rounded-md border-[2px] p-4">
           <div className="w-[595px]" ref={targetRef}>
             <div
               dangerouslySetInnerHTML={{
@@ -64,7 +65,7 @@ const GeneratedPage = ({ compiled }: GeneratedPageProps) => {
             />
           </div>
         </div>
-      </div>
+      </ScrollArea>
     </div>
   );
 };

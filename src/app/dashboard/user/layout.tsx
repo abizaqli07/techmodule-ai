@@ -1,7 +1,6 @@
-import React, { type ReactNode } from "react";
-import { Navbar } from "./_components/navbar";
-import { Sidebar } from "./_components/sidebar";
-import { MobileSidebar } from "./_components/mobile-sidebar";
+import { type ReactNode } from "react";
+import Header from "~/components/layout/layout_admin/header";
+import Sidebar from "~/components/layout/layout_admin/sidebar";
 import { auth } from "~/server/auth";
 
 const UserDashboardLayout = async ({ children }: { children: ReactNode }) => {
@@ -18,20 +17,13 @@ const UserDashboardLayout = async ({ children }: { children: ReactNode }) => {
   }
 
   return (
-    <div className="h-full">
-      <div className=" fixed inset-y-0 z-50 h-[80px] w-full">
-        <Navbar />
+    <>
+      <Header />
+      <div className="flex h-screen">
+        <Sidebar />
+        <main className="flex-1 pt-24">{children}</main>
       </div>
-      <main className="container mx-auto mt-[180px] flex-col flex md:flex-row h-full">
-        <div className="relative hidden flex-[2] md:flex">
-          <Sidebar />
-        </div>
-        <div className="relative flex flex-[2] md:hidden mb-12">
-          <MobileSidebar />
-        </div>
-        <div className="flex-[5] overflow-hidden">{children}</div>
-      </main>
-    </div>
+    </>
   );
 };
 

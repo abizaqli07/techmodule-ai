@@ -6,6 +6,7 @@ import { Poppins } from "next/font/google";
 
 import { Toaster } from "~/components/ui/toaster";
 import { TRPCReactProvider } from "~/trpc/react";
+import Providers from "~/components/providers";
 
 export const metadata: Metadata = {
   title: "Create T3 App",
@@ -26,10 +27,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
       <TRPCReactProvider>
-        <body className={`font-sans ${poppins.variable}`}>
-          {children}
-          <Toaster />
-        </body>
+        <Providers>
+          <body className={`font-sans ${poppins.variable}`}>
+            {children}
+            <Toaster />
+          </body>
+        </Providers>
       </TRPCReactProvider>
     </html>
   );
