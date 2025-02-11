@@ -16,12 +16,13 @@ export const generateRouter = createTRPCRouter({
 
       try {
         const completion = await ctx.openai.chat.completions.create({
-          model: "gpt-4o-mini",
+          model: "chatgpt-4o-latest",
+          max_completion_tokens: 10000,
           messages: [
             {
               role: "developer",
               content:
-                "Anda adalah seorang asisten guru yang sangat membantu dalam proses perencanaan pembelajaran.",
+                "Anda adalah seorang asisten guru yang sangat membantu dalam proses perencanaan pembelajaran dan pembuatan modul ajar.",
             },
             {
               role: "user",

@@ -13,6 +13,9 @@ export const CreateModuleSchema = z.object({
   learning_model: z.string().min(1, {
     message: "Model pembelajaran harus diisi"
   }),
+  curriculum: z.string().min(1, {
+    message: "Kurikulum pembelajaran harus diisi"
+  }),
   year: z.string().min(1, {
     message: "Tahun pelajaran harus diisi"
   }),

@@ -1,10 +1,4 @@
-import {
-  CSS,
-  Markdown,
-  PageBottom,
-  PageTop,
-  Tailwind,
-} from "@fileforge/react-print";
+import { CSS, Markdown, Tailwind } from "@fileforge/react-print";
 import { redirect } from "next/navigation";
 
 type DocumentProps = {
@@ -34,17 +28,9 @@ export const Document = ({ content }: DocumentProps) => {
     <div>
       <Tailwind>
         {/* Tailwind Style */}
-        <CSS>{`@page {size: A4;margin-top:2cm;margin-right:4cm;margin-left:2cm;margin-bottom:2cm;`}</CSS>
-
-        {/* Document Header */}
-        <PageTop>
-          <span>Hello #1</span>
-        </PageTop>
-
-        {/* Document Footer */}
-        <PageBottom>
-          <div className="text-sm text-gray-400">Hello #3</div>
-        </PageBottom>
+        <CSS>
+          {`@page {size: A4;margin-top:2cm;margin-right:4cm;margin-left:2cm;margin-bottom:2cm;`}
+        </CSS>
 
         {/* Document Content */}
         <Markdown
@@ -65,8 +51,11 @@ export const Document = ({ content }: DocumentProps) => {
         >
           {`
             ${content.message1}
+
             ${content.message2}
+
             ${content.message3}
+
             ${content.message4}
           `}
         </Markdown>

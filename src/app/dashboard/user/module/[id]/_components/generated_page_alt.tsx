@@ -4,6 +4,10 @@ import { Button } from "~/components/ui/button";
 import { useRef } from "react";
 import generatePDF, { Resolution, Margin, type Options } from "react-to-pdf";
 import { Separator } from "~/components/ui/separator";
+import { redirect } from "next/navigation";
+import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import styles from "~/styles/markdown.module.css"
 
 const options: Options = {
   filename: "techmodule.pdf",
@@ -32,11 +36,29 @@ const options: Options = {
   },
 };
 
-interface GeneratedPageProps {
-  compiled: string;
-}
+type DocumentProps = {
+  content:
+    | {
+        id: string;
+        userId: string;
+        title: string;
+        class: string;
+        subject: string;
+        message1: string;
+        message2: string;
+        message3: string;
+        message4: string;
+        createdAt: Date;
+        updatedAt: Date;
+      }
+    | undefined;
+};
 
-const GeneratedPage = ({ compiled }: GeneratedPageProps) => {
+const GeneratedPageAlt = ({ content }: DocumentProps) => {
+  if (!content) {
+    redirect("/404");
+  }
+
   const targetRef = useRef(null);
 
   return (
@@ -57,15 +79,13 @@ const GeneratedPage = ({ compiled }: GeneratedPageProps) => {
 
       <div className="mx-auto w-fit rounded-md border-[2px] p-4">
         <div className="w-[595px]" ref={targetRef}>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: compiled,
-            }}
-          />
+          <Markdown className={styles.markdown} remarkPlugins={[remarkGfm]}>
+            {`${content.message1}`}
+          </Markdown>
         </div>
       </div>
     </div>
   );
 };
 
-export default GeneratedPage;
+export default GeneratedPageAlt;
