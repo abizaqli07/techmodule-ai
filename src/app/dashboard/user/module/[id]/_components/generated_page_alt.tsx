@@ -11,7 +11,7 @@ import styles from "~/styles/markdown.module.css"
 
 const options: Options = {
   filename: "techmodule.pdf",
-  resolution: Resolution.MEDIUM,
+  resolution: Resolution.NORMAL,
   page: {
     margin: {
       top: Margin.SMALL,
@@ -80,7 +80,19 @@ const GeneratedPageAlt = ({ content }: DocumentProps) => {
       <div className="mx-auto w-fit rounded-md border-[2px] p-4">
         <div className="w-[595px]" ref={targetRef}>
           <Markdown className={styles.markdown} remarkPlugins={[remarkGfm]}>
-            {`${content.message1}`}
+            {`
+            ${content.message1}
+            \
+            &nbsp;
+            ${content.message2}
+            \
+            &nbsp;
+            ${content.message3}
+            \
+            &nbsp;
+            ${content.message4}
+            
+            `}
           </Markdown>
         </div>
       </div>

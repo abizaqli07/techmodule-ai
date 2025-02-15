@@ -15,9 +15,9 @@ export const generateRouter = createTRPCRouter({
       const userId = ctx.session.user.id;
 
       try {
-        const completion = await ctx.openai.chat.completions.create({
+        const completion1 = await ctx.openai.chat.completions.create({
           model: "chatgpt-4o-latest",
-          max_completion_tokens: 10000,
+          max_completion_tokens: 3000,
           messages: [
             {
               role: "developer",
@@ -31,14 +31,68 @@ export const generateRouter = createTRPCRouter({
                   type: "text",
                   text: inputPrompt.prompt1,
                 },
+              ],
+            },
+          ],
+          store: true,
+        });
+
+        const completion2 = await ctx.openai.chat.completions.create({
+          model: "chatgpt-4o-latest",
+          max_completion_tokens: 3000,
+          messages: [
+            {
+              role: "developer",
+              content:
+                "Anda adalah seorang asisten guru yang sangat membantu dalam proses perencanaan pembelajaran dan pembuatan modul ajar.",
+            },
+            {
+              role: "user",
+              content: [
                 {
                   type: "text",
                   text: inputPrompt.prompt2,
                 },
+              ],
+            },
+          ],
+          store: true,
+        });
+
+        const completion3 = await ctx.openai.chat.completions.create({
+          model: "chatgpt-4o-latest",
+          max_completion_tokens: 3000,
+          messages: [
+            {
+              role: "developer",
+              content:
+                "Anda adalah seorang asisten guru yang sangat membantu dalam proses perencanaan pembelajaran dan pembuatan modul ajar.",
+            },
+            {
+              role: "user",
+              content: [
                 {
                   type: "text",
                   text: inputPrompt.prompt3,
                 },
+              ],
+            },
+          ],
+          store: true,
+        });
+
+        const completion4 = await ctx.openai.chat.completions.create({
+          model: "chatgpt-4o-latest",
+          max_completion_tokens: 3000,
+          messages: [
+            {
+              role: "developer",
+              content:
+                "Anda adalah seorang asisten guru yang sangat membantu dalam proses perencanaan pembelajaran dan pembuatan modul ajar.",
+            },
+            {
+              role: "user",
+              content: [
                 {
                   type: "text",
                   text: inputPrompt.prompt4,
@@ -55,10 +109,10 @@ export const generateRouter = createTRPCRouter({
             title: input.title,
             class: input.class,
             subject: input.subjects,
-            message1: completion.choices[0]?.message.content ?? "",
-            message2: completion.choices[1]?.message.content ?? "",
-            message3: completion.choices[2]?.message.content ?? "",
-            message4: completion.choices[3]?.message.content ?? "",
+            message1: completion1.choices[0]?.message.content ?? "",
+            message2: completion2.choices[0]?.message.content ?? "",
+            message3: completion3.choices[0]?.message.content ?? "",
+            message4: completion4.choices[0]?.message.content ?? "",
           };
 
           const insert = await ctx.db
