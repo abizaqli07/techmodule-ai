@@ -7,7 +7,6 @@ import { Separator } from "~/components/ui/separator";
 import { redirect } from "next/navigation";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import styles from "~/styles/markdown.module.css"
 
 const options: Options = {
   filename: "techmodule.pdf",
@@ -79,7 +78,7 @@ const GeneratedPageAlt = ({ content }: DocumentProps) => {
 
       <div className="mx-auto w-fit rounded-md border-[2px] p-4">
         <div className="w-[595px]" ref={targetRef}>
-          <Markdown className={styles.markdown} remarkPlugins={[remarkGfm]}>
+          <Markdown className="markdown" remarkPlugins={[remarkGfm]}>
             {`
             ${content.message1}
             \

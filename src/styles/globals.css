@@ -64,3 +64,56 @@
     @apply bg-background text-foreground;
   }
 }
+@layer components {
+  .markdown {
+    * {
+      font-size: 0.875rem;
+      line-height: calc(1.25 / 0.875);
+    }
+  
+    h1 {
+      font-size: 1.25rem;
+      line-height: calc(1.75 / 1.25);
+      margin-top: 1.25rem;
+      margin-bottom: 1.25rem;
+      font-weight: 600;
+    }
+    h2 {
+      font-size: 1.125rem;
+      line-height: calc(1.75 / 1.25);
+      margin-top: .75rem;
+      margin-bottom: .75rem;
+      font-weight: 500;
+    }
+    h3 {
+      font-size: 1rem;
+      line-height: calc(1.5 / 1);
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+      font-weight: 400;
+    }
+  
+    table {
+      border-collapse: collapse;
+    }
+  
+    th,
+    td {
+      padding: 6px 13px;
+      border: 1px solid black;
+    }
+  
+    p {
+      line-height: 1.5;
+    }
+  
+    ul, ol{
+      margin-top: .5rem;
+      margin-bottom: .5rem;
+    }
+  
+    li{
+      margin-left: 1rem;
+    }
+  }
+}
