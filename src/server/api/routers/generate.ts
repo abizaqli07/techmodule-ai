@@ -176,4 +176,28 @@ export const generateRouter = createTRPCRouter({
       });
     }
   }),
+  getOverview: protectedProcedure.query(async ({ ctx }) => {
+    try {
+      const generate = await ctx.db.query.generated.findMany({
+        where: (generated, { eq }) => eq(generated.userId, ctx.session.user.id),
+        columns: {
+          id: true,
+          class: true,
+          title: true,
+          subject: true,
+          createdAt: true,
+        },
+        limit: 6
+      });
+
+      return generate;
+    } catch (error) {
+      console.log(error);
+      throw new TRPCError({
+        code: "INTERNAL_SERVER_ERROR",
+        message: "Server error, Modul tidak dapat ditampilkan.",
+        cause: error,
+      });
+    }
+  }),
 });

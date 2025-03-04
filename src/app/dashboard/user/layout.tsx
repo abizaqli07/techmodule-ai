@@ -18,7 +18,7 @@ const UserDashboardLayout = async ({ children }: { children: ReactNode }) => {
 
   return (
     <>
-      <Header />
+      <Header session={session} />
       <div className="flex h-screen">
         <Sidebar />
         <main className="flex-1 pt-24">{children}</main>

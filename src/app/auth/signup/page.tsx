@@ -13,7 +13,7 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
+  FormMessage,
 } from "~/components/ui/form";
 import { Input } from "~/components/ui/input";
 import { useToast } from "~/hooks/use-toast";
@@ -73,11 +73,12 @@ const Register = () => {
   return (
     <div className="flex min-h-screen w-full">
       <div className="relative hidden flex-1 bg-primary md:flex">
+        <div className="absolute bottom-0 left-0 right-0 top-0 z-50 bg-black/60"></div>
         <Image
-          src={"/images/auth/auth_bg.png"}
+          src={"/images/school-3.jpg"}
           alt="Background"
           fill
-          className=" object-cover"
+          className="object-cover"
         />
       </div>
       <div className="flex flex-1 items-center justify-center">
@@ -90,8 +91,8 @@ const Register = () => {
               width={150}
               height={20}
             /> */}
-            <div className="text-3xl font-bold text-center">Techmodule.AI</div>
-            <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+            <div className="text-center text-3xl font-bold">Techmodule.AI</div>
+            <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 dark:text-white">
               Create your account
             </h2>
           </div>

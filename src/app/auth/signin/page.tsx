@@ -57,8 +57,9 @@ const Login = () => {
   return (
     <div className="flex min-h-screen w-full">
       <div className="relative hidden flex-1 bg-primary md:flex">
+        <div className=" absolute right-0 left-0 top-0 bottom-0 z-50 bg-black/60"></div>
         <Image
-          src={"/images/auth/auth_bg.png"}
+          src={"/images/school.jpg"}
           alt="Background"
           fill
           className=" object-cover"
@@ -76,7 +77,7 @@ const Login = () => {
               height={20}
             /> */}
             <div className="text-3xl font-bold text-center">Techmodule.AI</div>
-            <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+            <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 dark:text-white">
               Sign in to your account
             </h2>
           </div>
@@ -146,12 +147,12 @@ const Login = () => {
             </Form>
 
             <p className="mt-10 text-center text-sm text-gray-500">
-              Not registered yet?{" "}
+              Doesnt have account yet?{" "}
               <Link
                 href={`/auth/signup${search !== null ? "?redirect=" + search : ""}`}
                 className="font-semibold leading-6 text-primary hover:text-primary"
               >
-                Start your learning journey
+                Register
               </Link>
             </p>
           </div>
