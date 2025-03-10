@@ -59,50 +59,6 @@ export const generateRouter = createTRPCRouter({
           store: true,
         });
 
-        const completion3 = await ctx.openai.chat.completions.create({
-          model: "chatgpt-4o-latest",
-          max_completion_tokens: 3000,
-          messages: [
-            {
-              role: "developer",
-              content:
-                "Anda adalah seorang asisten guru yang sangat membantu dalam proses perencanaan pembelajaran dan pembuatan modul ajar.",
-            },
-            {
-              role: "user",
-              content: [
-                {
-                  type: "text",
-                  text: inputPrompt.prompt3,
-                },
-              ],
-            },
-          ],
-          store: true,
-        });
-
-        const completion4 = await ctx.openai.chat.completions.create({
-          model: "chatgpt-4o-latest",
-          max_completion_tokens: 3000,
-          messages: [
-            {
-              role: "developer",
-              content:
-                "Anda adalah seorang asisten guru yang sangat membantu dalam proses perencanaan pembelajaran dan pembuatan modul ajar.",
-            },
-            {
-              role: "user",
-              content: [
-                {
-                  type: "text",
-                  text: inputPrompt.prompt4,
-                },
-              ],
-            },
-          ],
-          store: true,
-        });
-
         try {
           const toInsertData: typeof generated.$inferInsert = {
             userId: userId,
@@ -111,8 +67,8 @@ export const generateRouter = createTRPCRouter({
             subject: input.subjects,
             message1: completion1.choices[0]?.message.content ?? "",
             message2: completion2.choices[0]?.message.content ?? "",
-            message3: completion3.choices[0]?.message.content ?? "",
-            message4: completion4.choices[0]?.message.content ?? "",
+            message3: "",
+            message4: "",
           };
 
           const insert = await ctx.db

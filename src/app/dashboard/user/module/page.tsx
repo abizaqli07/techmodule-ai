@@ -6,6 +6,8 @@ import { columns } from "./_components/columns";
 import { DataTable } from "./_components/data-table";
 import { ScrollArea } from "~/components/ui/scroll-area";
 
+export const revalidate = 0;
+
 const ModulePage = async () => {
   const data = await api.userRoute.generate.getAll();
 

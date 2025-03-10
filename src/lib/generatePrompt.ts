@@ -22,13 +22,7 @@ export const GeneratePrompt = (input: GeneratePromptProps) => {
       5. target peserta didik, yaitu apa yang diharapkan dari peserta didik setelah mempelajari materi tersebut.
       6. Model pembelajaran, yaitu dengan menggunakan ${input.learning_model}
       
-      `,
-    prompt2: `
-    Modul pembelajaran dibagi menjadi 4 bagian, yaitu identitas modul, komponen inti, assesment, dan materi.
-    Modul yang akan dibuat kali ini berisi materi tentang ${input.subjects} dengan pokok bahasan ${input.subjects_matter}. Modul ini harus
-    mengikuti tata cara pembelajaran dengan kurikulum ${input.curriculum} untuk kelas ${input.class}. Pembelajaran dilaksanakan dengan model ${input.learning_model}.
-
-    Buatlah bagian kedua dari modul ini yaitu komponen inti dengan mengikuti rincian berikut :
+    Selanjtnya, buatlah bagian kedua dari modul ini yaitu komponen inti dengan mengikuti rincian berikut :
     Komponen inti modul dibagi menjadi 5 bagian yaitu:
       1. Tujuan pembelajaran, tujuan dari dilaksanakannya pembelajaran ini dan hasil akhir yang akan dicapai
       2. Pemahaman bermakna, sebuah kalimat yang memiliki makna tentang pembelajaran yang akan dilakukan
@@ -43,9 +37,8 @@ export const GeneratePrompt = (input: GeneratePromptProps) => {
           memberikan penguatan/umpan balik ke seperta didik, guru menyampaikan rencana kegiatan pertemuan selanjutnya, dan guru menutup dengan salam
       5. Refleksi, berisi daftar pertanyaan untuk refleksi pembemlajaran yang dilakukan seperti apakah peserta didik sudah menguasai materi? berikan minimal 
         5 pertanyaan refleksi.
-    
-        `,
-    prompt3: `
+      `,
+    prompt2: `
     Modul pembelajaran dibagi menjadi 4 bagian, yaitu identitas modul, komponen inti, assesment, dan materi.
     Modul yang akan dibuat kali ini berisi materi tentang ${input.subjects} dengan pokok bahasan ${input.subjects_matter}. Modul ini harus
     mengikuti tata cara pembelajaran dengan kurikulum ${input.curriculum} untuk kelas ${input.class}. Pembelajaran dilaksanakan dengan model ${input.learning_model}.
@@ -57,15 +50,8 @@ export const GeneratePrompt = (input: GeneratePromptProps) => {
       3. Assesment sumatif ( penilaian pengetahuan), berupa tes dalam bentuk pilihan ganda minimal 20 soal, masing-masing soal memiliki 5 pilihan jawaban secara lengkap.
         Berikan tabel kisi-kisi, soal, kunci jawaban, dan rubrik penilaian.
   
-  `,
-    prompt4: `
-    Modul pembelajaran dibagi menjadi 4 bagian, yaitu identitas modul, komponen inti, assesment, dan materi.
-    Modul yang akan dibuat kali ini berisi materi tentang ${input.subjects} dengan pokok bahasan ${input.subjects_matter}. Modul ini harus
-    mengikuti tata cara pembelajaran dengan kurikulum ${input.curriculum} untuk kelas ${input.class}. Pembelajaran dilaksanakan dengan model ${input.learning_model}.
-
-    Buatlah bagian keempat dari modul ini yaitu Materi dengan mengikuti rincian berikut :
+    Selanjutnya, buatlah bagian keempat dari modul ini yaitu Materi dengan mengikuti rincian berikut :
     Buatkan sebuah materi lengkap tentang materi berikut ${input.subjects} dengan pokok bahasan ${input.subjects_matter}
-    
-    `,
+  `,
   };
 };
